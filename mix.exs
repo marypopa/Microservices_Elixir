@@ -28,7 +28,10 @@ defmodule Conference.MixProject do
       {:ecto_sql, "~> 3.2"},
       {:postgrex, "~> 0.15"},
       {:poison, "~> 3.0"},
-      {:bcrypt_elixir, "~> 2.2.0"}
+      {:bcrypt_elixir, "~> 2.2.0"},
+      {:joken, "~> 2.2.0"},
+      {:jsonapi, "~> 1.3"},
+      {:guardian, "~> 2.1.1"}
     ]
   end
 end
