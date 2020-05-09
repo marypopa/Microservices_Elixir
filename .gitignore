@@ -22,3 +22,11 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 conference-*.tar
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
