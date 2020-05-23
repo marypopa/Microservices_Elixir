@@ -14,7 +14,7 @@ defmodule Conference.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :amqp],
 	    mod: {User.Application, []}
     ]
   end
@@ -30,8 +30,11 @@ defmodule Conference.MixProject do
       {:poison, "~> 3.0"},
       {:bcrypt_elixir, "~> 2.2.0"},
       {:joken, "~> 2.2.0"},
-      {:jsonapi, "~> 1.3"},
-      {:guardian, "~> 2.1.1"}
+      {:jsonapi, "~> 0.3.0"},
+      {:guardian, "~> 2.1.1"},
+      {:comeonin, "~> 5.3.1"},
+      {:timex, "~> 3.0"},
+      {:amqp, "~> 1.0"},
     ]
   end
 end

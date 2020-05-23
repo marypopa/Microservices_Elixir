@@ -4,6 +4,7 @@ defmodule User.Plug.AuthController do
   import Bcrypt
   alias User.Model.User, as: MUser
   alias User.Repository.Repo, as: Repo
+  alias User.Plug.RabbitmqProducer, as: Rabbit
   require Logger
 
   plug :match
@@ -30,6 +31,7 @@ defmodule User.Plug.AuthController do
       true ->
         case verify_pass(password, user.password_hash) do
           true ->  {:ok,token, full_claims} = User.Plug.Token.encode_and_sign(user)
+                    Rabbit.send_message(user, token)
                     conn
                     |> put_resp_content_type("application/json")
                     |> send_resp(200,  Poison.encode!(%{"token" => token}))
@@ -40,4 +42,5 @@ defmodule User.Plug.AuthController do
         end
         end
       end
+
 end
