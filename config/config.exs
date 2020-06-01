@@ -10,8 +10,8 @@ config :user, ecto_repos: [User.Repository.Repo]
 
 config :user, User.Repository.Repo,
        username: "postgres",
-       password: "root",
+       password: "postgres",
        database: "User",
-       hostname: "localhost",
+       hostname: "db",
        port: "5432",
        show_sensitive_data_on_connection_error: true
