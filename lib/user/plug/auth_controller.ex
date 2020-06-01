@@ -13,6 +13,8 @@ defmodule User.Plug.AuthController do
   post "/signup" do
     case Repo.get_by(MUser, email: conn.body_params["email"]) do
       nil -> {:ok, new_user} = Repo.get_user_sign_up(conn.body_params)
+             IO.inspect(new_user)
+             Rabbit.send_message(new_user)
              conn
              |> put_resp_content_type("application/json")
              |> send_resp(200, Poison.encode!(new_user))
@@ -31,7 +33,6 @@ defmodule User.Plug.AuthController do
       true ->
         case verify_pass(password, user.password_hash) do
           true ->  {:ok,token, full_claims} = User.Plug.Token.encode_and_sign(user)
-                    Rabbit.send_message(user, token)
                     conn
                     |> put_resp_content_type("application/json")
                     |> send_resp(200,  Poison.encode!(%{"token" => token}))
