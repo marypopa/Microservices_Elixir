@@ -27,4 +27,4 @@ RUN mix deps.compile
 COPY . .
 
 # Compile the entire project
-RUN mix do deps.get deps.compile, compile
+RUN mix do deps.get, deps.compile, compile
