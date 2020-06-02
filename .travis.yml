@@ -4,9 +4,6 @@ elixir:
 otp_release:
   - 21.0
 services: docker
-env:
-  global:
-    - MIX_ENV=test
 cache:
   directories:
     - _build

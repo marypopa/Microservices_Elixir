@@ -13,5 +13,5 @@ config :user, User.Repository.Repo,
        password: "postgres",
        database: "User",
        hostname: "userDb",
-       port: "5433",
+       port: "5432",
        show_sensitive_data_on_connection_error: true
