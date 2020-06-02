@@ -5,7 +5,7 @@ services:
     container_name: app
     command: /bin/bash -c 'mix ecto.migrate && mix run --no-halt'
     ports:
-      - 4000:4000
+      - 4005:4000
     depends_on:
       - db
       - rabbitmq
@@ -15,10 +15,10 @@ services:
       RABBITMQ_HOST: rabbitmq
   rabbitmq: 
     image: rabbitmq:3-management
-    container_name: rabbitmq-container
+    container_name: rabbitmq-container-server
     ports: 
-      - 5673:5672
-      - 15673:15672
+      - 5672:5672
+      - 15672:15672
     volumes: 
       - etc-rabbit-volume:/var/etc/rabbitmq/
       - data-rabbit-volume:/var/lib/rabbitmq/
