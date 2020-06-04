@@ -21,6 +21,8 @@ COPY mix.lock .
 RUN mix deps.get
 RUN mix release
 
+EXPOSE 2222 80
+
 COPY entrypoint.sh .
 RUN chmod a+rx entrypoint.sh
 
