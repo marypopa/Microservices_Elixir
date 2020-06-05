@@ -1,30 +1,30 @@
-# Latest version of Erlang-based Elixir installation: https://hub.docker.com/_/elixir/
-FROM elixir:latest
+#===========
+#Build Stage
+#===========
+FROM bitwalker/alpine-elixir:1.10.3 as build
 
-# Create and set home directory
-RUN mkdir /user_microservice
-WORKDIR /user_microservice
+ENV MIX_ENV=prod \
+    LANG=C.UTF-8
 
-# Configure required environment
-ENV MIX_ENV prod
+# Install hex and rebar
+RUN mix local.hex --force && \
+    mix local.rebar --force
 
-# Install hex (Elixir package manager)
-RUN mix local.hex --force
+#Copy the source folder into the Docker image
+COPY config ./config
+COPY lib ./lib
+COPY priv ./priv
+COPY mix.exs .
+COPY mix.lock .
 
-# Install rebar (Erlang build tool)
-RUN mix local.rebar --force
+#Install dependencies and build Release
+RUN mix deps.get
+RUN mix release
 
-# Copy all dependencies files
-COPY mix.* ./
+EXPOSE 2222 80
 
-# Install all production dependencies
-RUN mix deps.get --only prod
+COPY entrypoint.sh .
+RUN chmod a+rx entrypoint.sh
 
-# Compile all dependencies
-RUN mix deps.compile
-
-# Copy all application files
-COPY . .
-
-# Compile the entire project
-RUN mix do deps.get, deps.compile, compile
+#Set default entrypoint and command
+CMD ["./entrypoint.sh"]

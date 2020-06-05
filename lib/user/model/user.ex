@@ -8,12 +8,11 @@ defmodule User.Model.User do
     field :last_name, :string
     field :affiliation, :string
     field :email, :string
-    field :password, :string, virtual: true
-    field :password_hash, :string #encripted
+    field :password, :string
   end
 
   def changeset(struct, params) do
     struct
-    |> cast(params, [:id, :first_name, :last_name, :affiliation, :email, :password_hash])
+    |> cast(params, [:id, :first_name, :last_name, :affiliation, :email, :password])
   end
 end
