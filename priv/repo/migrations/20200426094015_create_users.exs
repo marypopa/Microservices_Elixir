@@ -7,7 +7,7 @@ defmodule User.Repo.Migrations.CreateUsers do
       add :last_name, :string,  null: false
       add :affiliation, :string, null: false
       add :email, :string, null: false
-      add :password_hash, :string, null: false
+      add :password, :string, null: false
     end
   end
 end

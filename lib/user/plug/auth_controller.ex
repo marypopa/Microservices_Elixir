@@ -1,7 +1,6 @@
 defmodule User.Plug.AuthController do
   use Plug.Router
   import Plug.Conn
-  import Bcrypt
   alias User.Model.User, as: MUser
   alias User.Repository.Repo, as: Repo
   alias User.Plug.RabbitmqProducer, as: Rabbit
@@ -31,7 +30,7 @@ defmodule User.Plug.AuthController do
         |> assign(:jsonapi, %{"error" => "credentials are not good"})
         |> send_resp(400,  Poison.encode!(%{"error" => "Credetials not good"}))
       true ->
-        case verify_pass(password, user.password_hash) do
+        case password == user.password do
           true ->  {:ok,token, full_claims} = User.Plug.Token.encode_and_sign(user)
                     conn
                     |> put_resp_content_type("application/json")

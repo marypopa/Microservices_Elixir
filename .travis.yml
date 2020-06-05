@@ -1,0 +1,23 @@
+language: elixir
+elixir:
+  - 1.10
+otp_release:
+  - 21.0
+services: docker
+cache:
+  directories:
+    - _build
+    - deps
+
+stages:
+  - build docker image
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t user_service .
+        - docker images
+        - docker tag user_service $DOCKER_USERNAME/user-conference
+        - docker push $DOCKER_USERNAME/user-conference
