@@ -14,7 +14,7 @@ defmodule Conference.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :amqp],
+      extra_applications: [:logger],
 	    mod: {User.Application, []}
     ]
   end

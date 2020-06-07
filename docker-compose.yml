@@ -8,6 +8,8 @@ services:
       - 4005:4000
     depends_on:
       - userDb
+    links:
+      - userDb
   userDb:
     image: postgres:11.0
     ports:
@@ -16,6 +18,11 @@ services:
       POSTGRES_DB: "User"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - data-volume:/var/lib/userDb
 volumes:
