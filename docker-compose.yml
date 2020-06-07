@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  user:
+    image: kedith/user-conference:latest
+    container_name: user
+    ports:
+      - 4005:4000
+    depends_on:
+      - userDb
+    environment:
+      WAIT_HOSTS: "postgres:5432"
+  userDb:
+    image: postgres:11.0
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: "User"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - data-volume:/var/lib/userDb
+volumes:
+  data-volume:
