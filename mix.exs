@@ -31,9 +31,7 @@ defmodule Conference.MixProject do
       {:joken, "~> 2.2.0"},
       {:jsonapi, "~> 0.3.0"},
       {:guardian, "~> 2.1.1"},
-      {:comeonin, "~> 5.3.1"},
-      {:timex, "~> 3.0"},
-      {:amqp, "~> 1.0"},
+      {:comeonin, "~> 5.3.1"}
     ]
   end
 end

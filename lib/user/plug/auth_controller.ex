@@ -3,7 +3,7 @@ defmodule User.Plug.AuthController do
   import Plug.Conn
   alias User.Model.User, as: MUser
   alias User.Repository.Repo, as: Repo
-  alias User.Plug.RabbitmqProducer, as: Rabbit
+  #alias User.Plug.RabbitmqProducer, as: Rabbit
   require Logger
 
   plug :match

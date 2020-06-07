@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   user:
+    restart: always
     image: kedith/user-conference:latest
     container_name: user
     ports:
@@ -11,6 +12,7 @@ services:
     links:
       - userDb
   userDb:
+    restart: always
     image: postgres:11.0
     ports:
       - 5433:5432
