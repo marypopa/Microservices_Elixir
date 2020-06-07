@@ -12,7 +12,7 @@ defmodule User.Application do
         scheme: :http,
         plug: User.Plug.Router,
         options: [
-          port: 8080
+          port: 4000
         ]
       },
       User.Repository.Repo
