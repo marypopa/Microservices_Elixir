@@ -1,8 +1,6 @@
 #!/bin/sh
 # Docker entrypoint script.
 
-source /wait
-
 mix ecto.create
 mix ecto.migrate
 

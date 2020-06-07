@@ -8,8 +8,6 @@ services:
       - 4005:4000
     depends_on:
       - userDb
-    environment:
-      WAIT_HOSTS: "postgres:5432"
   userDb:
     image: postgres:11.0
     ports:

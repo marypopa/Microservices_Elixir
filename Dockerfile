@@ -24,8 +24,5 @@ RUN mix release
 COPY entrypoint.sh .
 RUN chmod a+rx entrypoint.sh
 
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
-RUN chmod +x /wait
-
 #Set default entrypoint and command
 CMD ["./entrypoint.sh"]
