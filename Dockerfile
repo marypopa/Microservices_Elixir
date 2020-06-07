@@ -24,5 +24,7 @@ RUN mix release
 COPY entrypoint.sh .
 RUN chmod a+rx entrypoint.sh
 
+EXPOSE 2222 80
+
 #Set default entrypoint and command
 CMD ["./entrypoint.sh"]
